@@ -1,4 +1,4 @@
-package saga.test.kafka;
+package com.soul.saga.test.kafka;
 
 public class kafkaConnectionTest {
 
