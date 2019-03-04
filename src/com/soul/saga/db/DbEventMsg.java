@@ -1,6 +1,9 @@
 package com.soul.saga.db;
 
 public class DbEventMsg {
+	
+	// To uniquely for tracking the message-response flow
+	private String msgId;
 	private String query;
 	private  Action action;
 	
