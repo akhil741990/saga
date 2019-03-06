@@ -19,5 +19,18 @@ public class DbEventMsg {
 	public void setAction(Action action) {
 		this.action = action;
 	}
+	public String getMsgId() {
+		return msgId;
+	}
+	public void setMsgId(String msgId) {
+		this.msgId = msgId;
+	}
+	public String toString(){
+		StringBuilder s = new StringBuilder();
+		s.append("DbEventMsg").append("{msgId:").append(msgId)
+		 .append(",query:").append(query)
+		 .append(",action:").append(action).append("}");
+		return s.toString();
+	}
 	
 }
