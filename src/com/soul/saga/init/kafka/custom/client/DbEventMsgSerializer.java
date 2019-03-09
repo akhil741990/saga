@@ -22,7 +22,7 @@ public class DbEventMsgSerializer implements Serializer<DbEventMsg>{
 		byte [] serializedMsg = null;
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			mapper.writeValueAsString(msg).getBytes();
+			serializedMsg = mapper.writeValueAsString(msg).getBytes();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

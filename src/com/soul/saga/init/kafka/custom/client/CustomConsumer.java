@@ -15,6 +15,10 @@ import com.soul.saga.db.DbEventMsg;
 
 public class CustomConsumer {
 	
+	
+	
+	
+	
 private static String KAFKA_MACHINE_IP = "localhost";
 	
 	private static Consumer<String, DbEventMsg> createConsumer() {
@@ -35,11 +39,15 @@ private static String KAFKA_MACHINE_IP = "localhost";
 	public static void main(String args[]){
 		System.out.println("DbEventConsumer started...");
 		Consumer<String, DbEventMsg> consumer = createConsumer();
-		consumer.subscribe(Collections.singletonList("db-queue-custom"));
+		consumer.subscribe(Collections.singletonList("queue_db1"));
 		while (true) {
 	        ConsumerRecords<String, DbEventMsg> messages = consumer.poll(100);
 	        for (ConsumerRecord<String, DbEventMsg> message : messages) {
+	          try{	
 	          System.out.println("Message received " + message.value().toString());
+	          }catch (Exception e) {
+				System.out.println(e.getLocalizedMessage());
+			}
 	        }
 	    }
 	}

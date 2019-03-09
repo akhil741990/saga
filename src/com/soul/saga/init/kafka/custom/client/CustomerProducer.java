@@ -34,8 +34,9 @@ public class CustomerProducer {
 		msg.setMsgId("1");
 		msg.setQuery("select * from table");
 		msg.setAction(Action.COMMIT);
-		 producer.send(new ProducerRecord<String, DbEventMsg>("db-queue-custom", msg));
+		 producer.send(new ProducerRecord<String, DbEventMsg>("queue_db1", msg));
 		   System.out.println("Message " + msg.toString() + " sent !!");
+	   producer.flush();
 	}
 
 }
