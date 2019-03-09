@@ -1,4 +1,4 @@
-package com.soul.saga.init.kafka.client;
+package com.soul.saga.init.kafka.avro.client;
 
 import java.util.Collections;
 import java.util.Properties;
