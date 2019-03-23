@@ -13,7 +13,7 @@ import com.soul.saga.db.DbEventMsg;
 
 
 public class CustomerProducer {
-	private static String KAFKA_MACHINE_IP = "localhost";
+	private static String KAFKA_MACHINE_IP = "192.168.1.104";
 	private static Producer<String, DbEventMsg> createProducer() {
         Properties props = new Properties();
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, KAFKA_MACHINE_IP+":9092");

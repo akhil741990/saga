@@ -15,7 +15,7 @@ import io.confluent.kafka.serializers.KafkaAvroSerializer;
 import io.confluent.kafka.serializers.KafkaAvroSerializerConfig;
 
 public class DbEventProducer {
-	private static String KAFKA_MACHINE_IP = "192.168.1.102";
+	private static String KAFKA_MACHINE_IP = "192.168.1.104";
 
 	private static Producer<Long, DbEventMsg> createProducer() {
         Properties props = new Properties();

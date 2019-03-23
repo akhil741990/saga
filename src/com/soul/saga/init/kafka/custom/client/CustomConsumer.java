@@ -19,7 +19,7 @@ public class CustomConsumer {
 	
 	
 	
-private static String KAFKA_MACHINE_IP = "localhost";
+private static String KAFKA_MACHINE_IP = "192.168.1.104";
 	
 	private static Consumer<String, DbEventMsg> createConsumer() {
         Properties props = new Properties();
