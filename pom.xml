@@ -3,6 +3,12 @@
   <groupId>com.soul</groupId>
   <artifactId>saga</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <repositories>
+     <repository>
+         <id>confluent</id>
+         <url>http://packages.confluent.io/maven/</url>
+     </repository>
+</repositories>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
@@ -27,6 +33,11 @@
 	    <artifactId>okhttp</artifactId>
 	    <version>3.9.0</version>
 	</dependency>
-	  	
+	  <dependency>
+	    <groupId>io.confluent</groupId>
+	    <artifactId>kafka-avro-serializer</artifactId>
+	    <version>3.0.0</version>
+	</dependency>
+	  
   </dependencies>
 </project>
