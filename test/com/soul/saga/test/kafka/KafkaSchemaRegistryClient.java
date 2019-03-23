@@ -50,7 +50,7 @@ public class KafkaSchemaRegistryClient {
 	        //POST A NEW SCHEMA
 	     Request request = new Request.Builder()
 	                .post(RequestBody.create(SCHEMA_CONTENT, DbEventMsgSchema))
-	                .url("http://192.168.1.102:8081/subjects/db-event-msg/versions")
+	                .url("http://localhost:8081/subjects/db-event-msg/versions")
 	                .build();
 	     
 	     String output = client.newCall(request).execute().body().string();
