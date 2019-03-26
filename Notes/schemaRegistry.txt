@@ -1,0 +1,3 @@
+TODO :
+1) how to maintain the message schema via schema registry ?
+2) is it a over kill to maintain the message schema in schema registry ?
