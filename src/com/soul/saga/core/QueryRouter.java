@@ -1,12 +1,13 @@
 package com.soul.saga.core;
 
-import com.soul.saga.db.DistributedTransactionQueryList;
+import com.soul.saga.db.DistributedQuery;
 
 public class QueryRouter {
 
 	
-	public void routeQueries(DistributedTransactionQueryList queries){
+	public static void routeQueries(DistributedQuery query){
 		
+
 		
 	}
 }
