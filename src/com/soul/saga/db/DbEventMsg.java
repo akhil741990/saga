@@ -1,6 +1,8 @@
 package com.soul.saga.db;
 
-public class DbEventMsg {
+import com.soul.saga.core.SagaEvent;
+
+public class DbEventMsg extends SagaEvent {
 	
 	// To uniquely for tracking the message-response flow
 	private String msgId;

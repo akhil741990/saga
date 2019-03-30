@@ -3,7 +3,7 @@ package com.soul.saga.core.sec;
 
 import com.soul.saga.db.DistributedTransactionQueryList;
 
-public class DistibutedTransactionTracker {
+public class DistributedTransactionTracker {
 	DistributedTransactionQueryList qList;
 	int lastQueryExecuted;
 	/*
