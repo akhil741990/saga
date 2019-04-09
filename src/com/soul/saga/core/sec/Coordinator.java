@@ -7,7 +7,13 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 import com.soul.saga.core.SagaEventListener;
-
+/**
+ * This class is the Saga Execution Co-ordinator
+ *  It governs the execution of distributed  transaction 
+ *  across services
+ * @author akhil
+ *
+ */
 public class Coordinator implements SagaEventListener<SecResponseEvent>{
 
 	private DistributedTransactionManager transMgr;
@@ -15,7 +21,7 @@ public class Coordinator implements SagaEventListener<SecResponseEvent>{
 	private ExecutorService roolbackHandlerPool ; 
 	@Override
 	public void handle(SecResponseEvent event) {
-		// TODO Auto-generated method stub
+		responseProcesserPool.submit(new SecResponseProcessor(event));
 	}
 	public Coordinator(){
 		transMgr = DistributedTransactionManager.getInstance();

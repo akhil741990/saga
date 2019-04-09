@@ -5,8 +5,13 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingQueue;
 
-public class DistributedTransactionManager {
-	private Map<UUID,DistributedTransactionTracker> transactions;
+/**
+ * This class exposes a global view of all the transactions
+ * being performed across subscribed distributed services 
+ * @author Akhil
+ *
+ */
+public class DistributedTransactionManager { private Map<UUID,DistributedTransactionTracker> transactions;
 	private LinkedBlockingQueue<Runnable> rollbackQ ;
 	private static DistributedTransactionManager instance;
 	private DistributedTransactionManager(){
@@ -25,7 +30,13 @@ public class DistributedTransactionManager {
 	public DistributedTransactionTracker getTransactionTracker(UUID id){
 		return this.transactions.get(id);
 	}
+	
+	/*
+	 * 
+	 */
 	public LinkedBlockingQueue<Runnable> getRollBackQ(){
-		return this.instance.rollbackQ;
+		return this.rollbackQ;
 	}
+	
+	
 }
