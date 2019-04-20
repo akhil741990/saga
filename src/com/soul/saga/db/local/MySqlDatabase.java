@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import org.apache.commons.dbcp.BasicDataSource;
 
+import com.mysql.cj.core.conf.IntegerPropertyDefinition;
+
 
 public class MySqlDatabase implements Database{
 	
@@ -25,9 +27,9 @@ public class MySqlDatabase implements Database{
 		this.dataSource = new BasicDataSource();
 		
 		//TODO :  makes these values configurable via INI/ Properties file
-		this.dataSource.setUrl("jdbc:mysql://localhost:3306/ponkala");
+		this.dataSource.setUrl("jdbc:mysql://localhost:3306/saga");
 		this.dataSource.setUsername("root");
-		this.dataSource.setPassword("password");
+		this.dataSource.setPassword("root");
 		this.dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 		this.dataSource.setInitialSize(3);
 		this.dataSource.setMaxActive(10);
