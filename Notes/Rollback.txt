@@ -1,0 +1,16 @@
+
+Rollback can be any of the following type / combination of the below
+A) executing a compensatory sql statements
+B) Service level call for compensation
+
+================================================================
+
+A) 
+a) Accept the compensatory statement from the client (Current Implementation )
+b) Generate compensatory statement for each query passed to the Saga Co-ordinator (Need to check the feasibilty of this approach) 
+
+
+
+
+B)
+ Need to add support in current implementation

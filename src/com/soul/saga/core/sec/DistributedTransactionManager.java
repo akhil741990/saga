@@ -11,7 +11,8 @@ import java.util.concurrent.LinkedBlockingQueue;
  * @author Akhil
  *
  */
-public class DistributedTransactionManager { private Map<UUID,DistributedTransactionTracker> transactions;
+public class DistributedTransactionManager { 
+	private Map<UUID,DistributedTransactionTracker> transactions;
 	private LinkedBlockingQueue<Runnable> rollbackQ ;
 	private static DistributedTransactionManager instance;
 	private DistributedTransactionManager(){

@@ -1,1 +1,29 @@
-Convert all the test classes to Junit tests
+1) Convert all the test classes to Junit tests
+
+2) Add a REST endpoint for Saga Co-ordinator,
+   executeSaga :  this endpoint will receive the list for distributed transaction
+   b)All the Distibuted services will use this service to fetch / update meta info
+   meta info are as follows :
+   1) Topic/Qname for each Service
+   2) Saga Co-ordinators Response Topic/Qname      
+   c) This REST endpoint can be extended for administrative purpose
+      like :
+       1) force shutdown of all the current running transaction
+       2) get the list of running transaction
+
+
+
+
+REST API :
+executeSaga : this endpoint will receive the list for distributed transaction
+ Params : 
+            List of queries
+2)Register :
+/register :  This service will register the calling Distributed Service  in the Saga eco-system
+Parameter :
+serviceName  (This shd be unique across Saga)
+topicName 
+
+ 
+ 
+

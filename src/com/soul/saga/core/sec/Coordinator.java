@@ -1,6 +1,7 @@
 package com.soul.saga.core.sec;
 
 
+import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -30,5 +31,13 @@ public class Coordinator implements SagaEventListener<SecResponseEvent>{
 		          transMgr.getRollBackQ());
 	}
 
+	public void submitSaga(UUID id, DistributedTransactionTracker transaction){
+		transMgr.addTransactionTracker(id, transaction);
+		// start the transaction
+		SecResponseEvent event = new SecResponseEvent();
+		event.setTransactionId(id);
+		event.setStatus(ResponseStatus.PASS);
+		this.handle(event);
+	}
 
 }
