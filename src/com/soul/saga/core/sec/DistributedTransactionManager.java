@@ -33,7 +33,9 @@ public class DistributedTransactionManager {
 	}
 	
 	/*
-	 * 
+	 * We  need this Q to track the ongoing RollBackTasks in the
+	 * event of restart of Co-ordinator
+	 * TODO : Persist the details to restore them on restart
 	 */
 	public LinkedBlockingQueue<Runnable> getRollBackQ(){
 		return this.rollbackQ;

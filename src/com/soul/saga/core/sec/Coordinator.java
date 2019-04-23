@@ -22,13 +22,19 @@ public class Coordinator implements SagaEventListener<SecResponseEvent>{
 	private ExecutorService roolbackHandlerPool ; 
 	@Override
 	public void handle(SecResponseEvent event) {
-		responseProcesserPool.submit(new SecResponseProcessor(event));
+		System.out.println("Processing msg :"+ event.getTransactionId());
+		if(event.getStatus().equals(ResponseStatus.PASS)){
+			responseProcesserPool.submit(new SecResponseProcessor(event));
+		}else {
+			roolbackHandlerPool.submit(new RollbackHandler(event));
+		}
+		
 	}
 	public Coordinator(){
 		transMgr = DistributedTransactionManager.getInstance();
 		responseProcesserPool = Executors.newFixedThreadPool(10); // TODO : make this configurable
-		roolbackHandlerPool = new ThreadPoolExecutor(10, 10, 0L, TimeUnit.MILLISECONDS,
-		          transMgr.getRollBackQ());
+		roolbackHandlerPool = Executors.newFixedThreadPool(10);
+		
 	}
 
 	public void submitSaga(UUID id, DistributedTransactionTracker transaction){

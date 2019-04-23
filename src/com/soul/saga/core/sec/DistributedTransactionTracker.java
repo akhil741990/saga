@@ -37,9 +37,16 @@ public class DistributedTransactionTracker {
 	}
 	
 	private int incrementQueryIndex(){
+		if(lastQueryExecuted == queryList.size()){
+			return -1;
+		}
 		return ++lastQueryExecuted;
 	}
-	public DistributedQuery getNextQuery(){
-		return this.queryList.get(incrementQueryIndex());
+	public DistributedQuery getNextQuery(){	
+		int index = incrementQueryIndex();
+		if (index == -1) {
+			return null;
+		}
+		return this.queryList.get(index);
 	}
 }

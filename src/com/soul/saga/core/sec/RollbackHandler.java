@@ -18,8 +18,12 @@ public class RollbackHandler  implements Runnable{
 	public void run() {
 		// TODO Auto-generated method stub
 		UUID transId = event.getTransactionId();
+		System.out.println("RollBackHandler invoked for txId :" + transId);
 		DistributedTransactionTracker tracker = DistributedTransactionManager.getInstance().getTransactionTracker(transId);
 		for(int i = tracker.getLastQueryExecuted() -1 ; i>=0 ;i --){
+			DistributedQuery q = tracker.getqList().get(i);
+			System.out.println("Sending compensatory query for query : "+ q.getQuery() );
+			System.out.println("Compensatory Query : " +  q.getCompensatoryQuery());
 			/* send the rollback query on dedicated rollbackQ so that their execcution
 			 * is not delayed , which would be the case if the same Q is used for rollback and normal queries 
 			 */

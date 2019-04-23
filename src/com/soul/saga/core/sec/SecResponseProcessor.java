@@ -13,20 +13,19 @@ public class SecResponseProcessor implements Runnable {
 	
 	@Override
 	public void run() {
-		if(event.getStatus().equals(ResponseStatus.PASS)){
-			DistributedTransactionTracker tracker = DistributedTransactionManager.getInstance()
-										.getTransactionTracker(event.getTransactionId());
-			DistributedQuery query = tracker.getNextQuery();
-			QueryRouter.routeQueries(query);
+		
+		System.out.println("SecResponseProcessor :Processing msg :"+ event.getTransactionId());
+		
+		DistributedTransactionTracker tracker = DistributedTransactionManager.getInstance()
+									.getTransactionTracker(event.getTransactionId());
+		DistributedQuery query = tracker.getNextQuery();
+		if (query == null) {
+			System.out.println("Saga Successful");
 		}else{
-			try {
-				DistributedTransactionManager.getInstance().getRollBackQ().put((new RollbackHandler(event)));
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
+			System.out.println("Next Query : "+ query.getQuery());
+			QueryRouter.routeQueries(query);
 		}
+		
 	}
 
 }
