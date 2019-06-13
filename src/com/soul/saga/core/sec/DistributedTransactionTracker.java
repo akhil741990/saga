@@ -45,12 +45,12 @@ public class DistributedTransactionTracker {
 	}
 	
 	private int incrementQueryIndex(){
-		if(lastQueryExecuted == queryList.size()){
+		if( lastQueryExecuted == -1 || lastQueryExecuted == queryList.size()){
 			return -1;
 		}
 		return ++lastQueryExecuted;
 	}
-	public DistributedQuery getNextQuery(){	
+	public DistributedQuery nextQuery(){	
 		int index = incrementQueryIndex();
 		if (index == -1) {
 			return null;

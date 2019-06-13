@@ -22,27 +22,27 @@ public class IntegrationTest {
 		//trk.addQueryToList(dQuery2);
 		Coordinator cordinator = new Coordinator("localhost","co-ordinator");
 		UUID transactionId = UUID.randomUUID();
-		cordinator.submitSaga(trk);
-		SagaResponseListenerSimulator sim = new SagaResponseListenerSimulator(cordinator);
-		BufferedReader reader =  new BufferedReader(new InputStreamReader(System.in)); 
-		
-		while(true){
-			System.out.println("SecResponseSimulator:Please enter the response type "
-					+ "\n 1) Possitive Response : Y \n"
-					+ "2) Negtaive Response : N \n"
-					+ "3) Exit the test : E"
-					);
-			String name = reader.readLine();
-			if("Y".equals(name)){
-				sim.sendPositiveResponse(transactionId);
-			}else if("N".equals(name)){
-				sim.sendNegativeResponse(transactionId);
-			}else if ("E".equals(name)){
-				break;
-			}else {
-				System.out.println("Invalid Input");
-			}
-		}
+//		cordinator.submitSaga(trk);
+//		SagaResponseListenerSimulator sim = new SagaResponseListenerSimulator(cordinator);
+//		BufferedReader reader =  new BufferedReader(new InputStreamReader(System.in)); 
+//		
+//		while(true){
+//			System.out.println("SecResponseSimulator:Please enter the response type "
+//					+ "\n 1) Possitive Response : Y \n"
+//					+ "2) Negtaive Response : N \n"
+//					+ "3) Exit the test : E"
+//					);
+//			String name = reader.readLine();
+//			if("Y".equals(name)){
+//				sim.sendPositiveResponse(transactionId);
+//			}else if("N".equals(name)){
+//				sim.sendNegativeResponse(transactionId);
+//			}else if ("E".equals(name)){
+//				break;
+//			}else {
+//				System.out.println("Invalid Input");
+//			}
+//		}
 		
 		
 		
