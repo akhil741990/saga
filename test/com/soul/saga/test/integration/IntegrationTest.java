@@ -20,9 +20,9 @@ public class IntegrationTest {
 		DistributedQuery dQuery2 = new DistributedQuery("DB-2", "Query-2", "comp-Query2");
 		trk.addQueryToList(dQuery);
 		//trk.addQueryToList(dQuery2);
-		Coordinator cordinator = new Coordinator();
+		Coordinator cordinator = new Coordinator("localhost","co-ordinator");
 		UUID transactionId = UUID.randomUUID();
-		cordinator.submitSaga(transactionId, trk);
+		cordinator.submitSaga(trk);
 		SagaResponseListenerSimulator sim = new SagaResponseListenerSimulator(cordinator);
 		BufferedReader reader =  new BufferedReader(new InputStreamReader(System.in)); 
 		

@@ -10,6 +10,7 @@ import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 
+import com.soul.saga.core.sec.DistributedTransactionTracker;
 import com.soul.saga.db.DbEventMsg;
 
 
@@ -19,11 +20,11 @@ public class CustomConsumer {
 	
 	
 	
-private static String KAFKA_MACHINE_IP = "192.168.1.104";
+private static String KAFKA_MACHINE_IP = "localhost";
 	
-	private static Consumer<String, DbEventMsg> createConsumer() {
+	public static Consumer<String, DbEventMsg> createConsumer(String kafkaBrokerIP) {
         Properties props = new Properties();
-        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, KAFKA_MACHINE_IP+":9092");
+        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaBrokerIP+":9092");
         props.put(ConsumerConfig.GROUP_ID_CONFIG, "KafkaExampleAvroConsumer");
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,
                 StringDeserializer.class.getName());
@@ -36,9 +37,26 @@ private static String KAFKA_MACHINE_IP = "192.168.1.104";
         return new KafkaConsumer<>(props);
     }
 
+	
+	public static Consumer<String, DistributedTransactionTracker> createConsumerForCoordinator(String kafkaBrokerIP) {
+        Properties props = new Properties();
+        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaBrokerIP+":9092");
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, "KafkaExampleAvroConsumer");
+        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,
+                StringDeserializer.class.getName());
+    
+        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,
+                "com.soul.saga.init.kafka.custom.client.DistributedTransactionTrackerDeserilaizer");  //<----------------------
+        
+        //Schema registry location.
+        
+        return new KafkaConsumer<>(props);
+    }
+	
+	
 	public static void main(String args[]){
 		System.out.println("DbEventConsumer started...");
-		Consumer<String, DbEventMsg> consumer = createConsumer();
+		Consumer<String, DbEventMsg> consumer = createConsumer("localhost");
 		consumer.subscribe(Collections.singletonList("queue_db1"));
 		while (true) {
 	        ConsumerRecords<String, DbEventMsg> messages = consumer.poll(100);

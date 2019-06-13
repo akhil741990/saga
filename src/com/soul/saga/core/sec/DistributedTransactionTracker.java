@@ -4,6 +4,8 @@ package com.soul.saga.core.sec;
 import java.util.ArrayList;
 
 import com.soul.saga.db.DistributedQuery;
+import java.util.UUID;
+
 
 public class DistributedTransactionTracker {
 	/*
@@ -18,8 +20,14 @@ public class DistributedTransactionTracker {
 	 */
 	private final ArrayList<DistributedQuery> queryList ;
 	int lastQueryExecuted;
+	private UUID id;
 	
+	public UUID getId() {
+		return id;
+	}
+
 	public DistributedTransactionTracker(){
+		this.id = UUID.randomUUID();
 		this.lastQueryExecuted = -1;
 		this.queryList = new ArrayList<>();
 	}
