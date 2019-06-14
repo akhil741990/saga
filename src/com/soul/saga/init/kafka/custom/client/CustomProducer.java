@@ -13,7 +13,7 @@ import com.soul.saga.db.Action;
 import com.soul.saga.db.DbEventMsg;
 
 
-public class CustomerProducer {
+public class CustomProducer {
 	private static String KAFKA_MACHINE_IP = "localhost";
 	private static Producer<String, DbEventMsg> createProducer(String kafkaBrokerIP) {
         Properties props = new Properties();
@@ -30,7 +30,7 @@ public class CustomerProducer {
     }
 	
 
-	private static Producer<String, DistributedTransactionTracker> createProducerForCoordinator(String kafkaBrokerIP) {
+	public static Producer<String, DistributedTransactionTracker> createProducerForCoordinator(String kafkaBrokerIP) {
         Properties props = new Properties();
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaBrokerIP+":9092");
         props.put(ProducerConfig.CLIENT_ID_CONFIG, "AvroProducer");

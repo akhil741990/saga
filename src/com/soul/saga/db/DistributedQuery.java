@@ -4,6 +4,12 @@ public class DistributedQuery {
 	private final String dbName;
 	private final String query;
 	private final String compensatoryQuery;
+	public DistributedQuery(){
+		this.query = "";
+		this.compensatoryQuery = "";
+		this.dbName = "";
+	}
+	
 	public DistributedQuery(String dbName, String query, String compensatoryQuery) {
 		this.query = query;
 		this.compensatoryQuery = compensatoryQuery;

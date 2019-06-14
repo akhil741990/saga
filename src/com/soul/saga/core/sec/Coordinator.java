@@ -66,7 +66,7 @@ public class Coordinator implements SagaEventListener<SecResponseEvent>{
 		        ConsumerRecords<String, DistributedTransactionTracker> messages = kafkaEventSubcriber.poll(100);
 		        for (ConsumerRecord<String, DistributedTransactionTracker> message : messages) {
 		          try{	
-		          System.out.println("Message received " + message.value().toString());
+		          System.out.println("Message received " + message.value().getId().toString());
 		          Coordinator.this.submitSaga(message.value());
 		          }catch (Exception e) {
 					System.out.println(e.getLocalizedMessage());

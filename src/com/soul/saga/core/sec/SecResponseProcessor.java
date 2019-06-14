@@ -18,7 +18,7 @@ public class SecResponseProcessor implements Runnable {
 		
 		DistributedTransactionTracker tracker = DistributedTransactionManager.getInstance()
 									.getTransactionTracker(event.getTransactionId());
-		DistributedQuery query = tracker.getNextQuery();
+		DistributedQuery query = tracker.nextQuery();
 		if (query == null) {
 			System.out.println("Saga Successful");
 		}else{
